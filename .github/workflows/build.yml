@@ -1,0 +1,46 @@
+name: Build example
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Cache packs
+        uses: actions/cache@v3
+        with:
+          key: packs-${{ github.run_id }}
+          restore-keys: packs-
+          path: /home/runner/.cache/arm/packs
+
+      # - name: Cache vcpkg
+      #   uses: actions/cache@v3
+      #   with:
+      #     key: vcpkg-${{ github.run_id }}
+      #     restore-keys: vcpkg-
+      #     path: /home/runner/.vcpkg
+
+      - run: |
+          # Bootstrap and activate vcpkg
+          . <(curl https://aka.ms/vcpkg-init.sh -L)
+          vcpkg x-update-registry --all
+          vcpkg activate
+          
+          # Activate tool license
+          armlm activate -product KEMDK-COM0 -server https://mdk-preview.keil.arm.com
+
+          # Run build
+          cbuild Blinky.csolution.yml --packs --update-rte --context .Debug+AVH
+
+      - name: Deactivate tool license
+        if: always()
+        run: |
+            armlm deactivate -product KEMDK-COM0

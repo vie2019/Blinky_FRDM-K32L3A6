@@ -1,0 +1,44 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Run AVH",
+			"command": "VHT_Corstone_SSE-300_Ethos-U55.exe",
+			"args": [
+				"-f",
+				"app\\Board\\AVH_MPS3_Corstone-300\\vht_config.txt",
+ 				"${command:cmsis-csolution.getBinaryFile}",
+				"-Q",
+				"10"
+			],
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "embedded-debug.flash",
+			"serialNumber": "${command:device-manager.getSerialNumber}",
+			"program": "${command:cmsis-csolution.getBinaryFile}",
+			"cmsisPack": "${command:device-manager.getDevicePack}",
+			"problemMatcher": [],
+			"label": "Flash K32L3A6",
+			"group": "build"
+		},
+		{
+			"label": "CMSIS Build",
+			"type": "cmsis-csolution.build",
+			"solution": "${command:cmsis-csolution.getSolutionPath}",
+			"project": "${command:cmsis-csolution.getProjectPath}",
+			"buildType": "${command:cmsis-csolution.getBuildType}",
+			"targetType": "${command:cmsis-csolution.getTargetType}",
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}

@@ -1,0 +1,33 @@
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Executables
+*.out
+*.axf
+*.hex
+
+# Generated output
+.clangd
+*.cbuild-idx.yml
+**/tmp
+**/out
+/app/Board/FRDM-K32L3A6/*.cbuild.yml
+/app/Board/FRDM-K32L3A6/*.cprj
+/app/Board/FRDM-K32L3A6/tmp/*
+/app/Board/FRDM-K32L3A6/out/*

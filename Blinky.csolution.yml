@@ -1,0 +1,54 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/schemas/projmgr/2.0.0-dev1/tools/projmgr/schemas/csolution.schema.json
+
+solution:
+  created-for: cmsis-toolbox@2.0.0
+  description: Simple blinky example for FRDM-K32L3A6.
+  compiler: AC6
+
+  misc:
+    - for-compiler: AC6
+      C-CPP:
+        - -Wno-macro-redefined
+        - -Wno-pragma-pack
+        - -Wno-parentheses-equality
+      C:
+        - -std=gnu11
+      ASM:
+        - -masm=auto
+      Link:
+        - --entry=Reset_Handler
+        - --info summarysizes
+        - --summary_stderr
+        - --diag_suppress 6314
+        - --diag_suppress 6848
+
+  packs:
+    - pack: ARM::CMSIS
+    - pack: Keil::ARM_Compiler
+
+    # packs for FRDM-K32L3A6
+    - pack: NXP::K32L3A60_DFP@13.0.0
+      for-context:
+        - +FRDM-K32L3A6
+    - pack: NXP::FRDM-K32L3A6_BSP@13.0.0
+      for-context:
+        - +FRDM-K32L3A6
+
+  target-types:
+    - type: FRDM-K32L3A6
+      board: NXP::FRDM-K32L3A6
+      device: NXP::K32L3A60VPJ1A:cm4
+
+  build-types:
+    - type: Debug
+      optimize: none
+      debug: on
+
+    - type: Release
+      optimize: balanced
+      debug: off
+
+  projects:
+    - project: ./app/Board/FRDM-K32L3A6/FRDM-K32L3A6.cproject.yml
+      for-context:
+        - +FRDM-K32L3A6
