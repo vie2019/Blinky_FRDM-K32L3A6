@@ -27,7 +27,5 @@
 *.cbuild-idx.yml
 **/tmp
 **/out
-/app/Board/FRDM-K32L3A6/*.cbuild.yml
-/app/Board/FRDM-K32L3A6/*.cprj
-/app/Board/FRDM-K32L3A6/tmp/*
-/app/Board/FRDM-K32L3A6/out/*
+*.cbuild.yml
+*.cprj

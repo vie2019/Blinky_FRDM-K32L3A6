@@ -2,9 +2,6 @@
 
 project:
 
-#  add-path:
-#    - .
-
   define:
     - SDK_DEBUGCONSOLE: 1
 
@@ -15,7 +12,7 @@ project:
   groups:
     - group: Documentation
       files: 
-        - file: ../../../README.md
+        - file: ./README.md
     - group: App
       files:
         - file: ./Blinky.c
@@ -23,8 +20,6 @@ project:
         - file: ./main.c
     - group: Board
       files:
-        - file: ./arduino.h
-        - file: ./arduino.c
         - file: ./retarget_stdio.c
         - file: ./fsl_lpspi_cmsis.h
         - file: ./fsl_lpspi_cmsis.c
@@ -71,8 +66,6 @@ project:
     - component: NXP::CMSIS Driver:USART:lpuart_cmsis
     - component: ARM::CMSIS Driver:VIO:Custom
 
-    - component: Keil::Compiler&ARM Compiler:Event Recorder&DAP
-    - component: Keil::Compiler&ARM Compiler:I/O:STDERR&User
-    - component: Keil::Compiler&ARM Compiler:I/O:STDOUT&User
-    - component: Keil::Compiler&ARM Compiler:I/O:STDIN&User
-
+    - component: ARM::CMSIS-Compiler:I/O:STDERR&User
+    - component: ARM::CMSIS-Compiler:I/O:STDOUT&User
+    - component: ARM::CMSIS-Compiler:I/O:STDIN&User
