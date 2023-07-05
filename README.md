@@ -10,6 +10,8 @@ The output of the serial console can be observed in a Terminal window on VS Code
 
 Refer to [Project Configuration](#project-configuration) for board specific settings.
 
+[![Keil Studio Cloud - Import Project](https://img.shields.io/badge/Keil_Studio_Cloud-Import_Project-0091bd?logo=arm&logoColor=0091bd)](https://studio.keil.arm.com/?import=https://github.com/Arm-Examples/Blinky_FRDM-K32L3A6.git)
+
 ## Prerequisites
 
 ### Tools:
